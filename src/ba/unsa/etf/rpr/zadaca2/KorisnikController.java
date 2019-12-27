@@ -13,6 +13,7 @@ public class KorisnikController {
     public TextField fldUsername;
     public ListView<Korisnik> listKorisnici;
     public PasswordField fldPassword;
+    public PasswordField fldPasswordRepeat;
 
     private KorisniciModel model;
 
@@ -26,15 +27,15 @@ public class KorisnikController {
         listKorisnici.getSelectionModel().selectedItemProperty().addListener((obs, oldKorisnik, newKorisnik) -> {
             model.setTrenutniKorisnik(newKorisnik);
             listKorisnici.refresh();
-         });
+        });
 
         model.trenutniKorisnikProperty().addListener((obs, oldKorisnik, newKorisnik) -> {
             if (oldKorisnik != null) {
-                fldIme.textProperty().unbindBidirectional(oldKorisnik.imeProperty() );
-                fldPrezime.textProperty().unbindBidirectional(oldKorisnik.prezimeProperty() );
-                fldEmail.textProperty().unbindBidirectional(oldKorisnik.emailProperty() );
-                fldUsername.textProperty().unbindBidirectional(oldKorisnik.usernameProperty() );
-                fldPassword.textProperty().unbindBidirectional(oldKorisnik.passwordProperty() );
+                fldIme.textProperty().unbindBidirectional(oldKorisnik.imeProperty());
+                fldPrezime.textProperty().unbindBidirectional(oldKorisnik.prezimeProperty());
+                fldEmail.textProperty().unbindBidirectional(oldKorisnik.emailProperty());
+                fldUsername.textProperty().unbindBidirectional(oldKorisnik.usernameProperty());
+                fldPassword.textProperty().unbindBidirectional(oldKorisnik.passwordProperty());
             }
             if (newKorisnik == null) {
                 fldIme.setText("");
@@ -42,13 +43,14 @@ public class KorisnikController {
                 fldEmail.setText("");
                 fldUsername.setText("");
                 fldPassword.setText("");
-            }
-            else {
-                fldIme.textProperty().bindBidirectional( newKorisnik.imeProperty() );
-                fldPrezime.textProperty().bindBidirectional( newKorisnik.prezimeProperty() );
-                fldEmail.textProperty().bindBidirectional( newKorisnik.emailProperty() );
-                fldUsername.textProperty().bindBidirectional( newKorisnik.usernameProperty() );
-                fldPassword.textProperty().bindBidirectional( newKorisnik.passwordProperty() );
+                fldPasswordRepeat.setText("");
+            } else {
+                fldIme.textProperty().bindBidirectional(newKorisnik.imeProperty());
+                fldPrezime.textProperty().bindBidirectional(newKorisnik.prezimeProperty());
+                fldEmail.textProperty().bindBidirectional(newKorisnik.emailProperty());
+                fldUsername.textProperty().bindBidirectional(newKorisnik.usernameProperty());
+                fldPassword.textProperty().bindBidirectional(newKorisnik.passwordProperty());
+                fldPasswordRepeat.textProperty().setValue(fldPassword.getText());
             }
         });
 
@@ -93,10 +95,28 @@ public class KorisnikController {
         });
 
         fldPassword.textProperty().addListener((obs, oldIme, newIme) -> {
-            if (!newIme.isEmpty()) {
+            if (!newIme.isEmpty() && newIme.equals(fldPasswordRepeat.getText())) {
+                fldPassword.getStyleClass().removeAll("poljeNijeIspravno");
+                fldPassword.getStyleClass().add("poljeIspravno");
+                fldPasswordRepeat.getStyleClass().removeAll("poljeNijeIspravno");
+                fldPasswordRepeat.getStyleClass().add("poljeIspravno");
+            } else {
+                fldPassword.getStyleClass().removeAll("poljeIspravno");
+                fldPassword.getStyleClass().add("poljeNijeIspravno");
+                fldPasswordRepeat.getStyleClass().removeAll("poljeIspravno");
+                fldPasswordRepeat.getStyleClass().add("poljeNijeIspravno");
+            }
+        });
+
+        fldPasswordRepeat.textProperty().addListener((obs, oldIme, newIme) -> {
+            if (!newIme.isEmpty() && newIme.equals(fldPassword.getText())) {
+                fldPasswordRepeat.getStyleClass().removeAll("poljeNijeIspravno");
+                fldPasswordRepeat.getStyleClass().add("poljeIspravno");
                 fldPassword.getStyleClass().removeAll("poljeNijeIspravno");
                 fldPassword.getStyleClass().add("poljeIspravno");
             } else {
+                fldPasswordRepeat.getStyleClass().removeAll("poljeIspravno");
+                fldPasswordRepeat.getStyleClass().add("poljeNijeIspravno");
                 fldPassword.getStyleClass().removeAll("poljeIspravno");
                 fldPassword.getStyleClass().add("poljeNijeIspravno");
             }

@@ -1,8 +1,8 @@
-package ba.unsa.etf.rpr.t7;
+package ba.unsa.etf.rpr.zadaca2;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class KorisnikTest {
     @Test

@@ -1,4 +1,4 @@
-package ba.unsa.etf.rpr.t7;
+package ba.unsa.etf.rpr.zadaca2;
 
 import javafx.beans.property.SimpleStringProperty;
 

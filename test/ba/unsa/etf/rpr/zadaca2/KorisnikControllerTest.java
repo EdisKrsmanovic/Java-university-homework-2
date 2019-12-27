@@ -1,4 +1,4 @@
-package ba.unsa.etf.rpr.t7;
+package ba.unsa.etf.rpr.zadaca2;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 import static org.junit.jupiter.api.Assertions.*;

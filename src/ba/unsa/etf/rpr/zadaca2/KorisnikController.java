@@ -1,4 +1,4 @@
-package ba.unsa.etf.rpr.t7;
+package ba.unsa.etf.rpr.zadaca2;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -110,5 +110,9 @@ public class KorisnikController {
 
     public void krajAction(ActionEvent actionEvent) {
         System.exit(0);
+    }
+
+    public void obrisiAction(ActionEvent actionEvent) {
+        model.getKorisnici().remove(model.getTrenutniKorisnik());
     }
 }

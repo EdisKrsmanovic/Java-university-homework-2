@@ -3,7 +3,6 @@
 <?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
 <GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
@@ -37,28 +36,9 @@
       <PasswordField fx:id="fldPassword" GridPane.columnIndex="2" GridPane.rowIndex="4" />
       <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="5">
         <buttons>
-            <Button fx:id="btnObrisi" mnemonicParsing="false" onAction="#obrisiAction" text="Obriši">
-               <graphic>
-                  <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../img/edit-delete.png" />
-                     </image>
-                  </ImageView>
-               </graphic></Button>
-            <Button fx:id="btnDodaj" mnemonicParsing="false" onAction="#dodajAction" text="Dodaj">
-               <graphic>
-                  <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../img/list-add.png" />
-                     </image></ImageView>
-               </graphic></Button>
-            <Button fx:id="btnKraj" cancelButton="true" mnemonicParsing="false" onAction="#krajAction" text="Kraj">
-               <graphic>
-                  <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../img/application-exit.png" />
-                     </image></ImageView>
-               </graphic></Button>
+            <Button fx:id="btnObrisi" mnemonicParsing="false" onAction="#obrisiAction" text="Obriši" />
+            <Button fx:id="btnDodaj" mnemonicParsing="false" onAction="#dodajAction" text="Dodaj" />
+            <Button fx:id="btnKraj" cancelButton="true" mnemonicParsing="false" onAction="#krajAction" text="Kraj" />
         </buttons>
       </ButtonBar>
    </children>

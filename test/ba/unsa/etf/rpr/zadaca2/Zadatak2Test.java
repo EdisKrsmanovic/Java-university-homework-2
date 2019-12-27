@@ -1,5 +1,8 @@
-/*package ba.unsa.etf.rpr.t7;
+package ba.unsa.etf.rpr.t7;
 
+import ba.unsa.etf.rpr.zadaca2.KorisniciModel;
+import ba.unsa.etf.rpr.zadaca2.Korisnik;
+import ba.unsa.etf.rpr.zadaca2.KorisnikController;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -83,4 +86,3 @@ public class Zadatak2Test {
         assertEquals("Rijad", polje.getText());
     }
 }
-*/

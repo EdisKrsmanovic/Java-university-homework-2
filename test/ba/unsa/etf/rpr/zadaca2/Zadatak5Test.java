@@ -1,4 +1,4 @@
-/*package ba.unsa.etf.rpr.t7;
+package ba.unsa.etf.rpr.zadaca2;
 
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
@@ -136,4 +136,3 @@ public class Zadatak5Test {
         assertEquals(1990, slider.getValue());
     }
 }
-*/

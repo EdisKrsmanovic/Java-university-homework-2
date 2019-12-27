@@ -1,9 +1,11 @@
 package ba.unsa.etf.rpr.zadaca2;
 
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 public class Korisnik {
     private SimpleStringProperty ime, prezime, email, username, password;
+    private SimpleIntegerProperty godinaRodjenja;
 
     public Korisnik(String ime, String prezime, String email, String username, String password) {
         this.ime = new SimpleStringProperty(ime);
@@ -11,6 +13,7 @@ public class Korisnik {
         this.email = new SimpleStringProperty(email);
         this.username = new SimpleStringProperty(username);
         this.password = new SimpleStringProperty(password);
+        this.godinaRodjenja = new SimpleIntegerProperty(2000);
     }
 
     @Override
@@ -76,6 +79,18 @@ public class Korisnik {
 
     public void setPassword(String password) {
         this.password.set(password);
+    }
+
+    public int getGodinaRodjenja() {
+        return godinaRodjenja.get();
+    }
+
+    public SimpleIntegerProperty godinaRodjenjaProperty() {
+        return godinaRodjenja;
+    }
+
+    public void setGodinaRodjenja(int godinaRodjenja) {
+        this.godinaRodjenja.set(godinaRodjenja);
     }
 
 

@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 
 public class KorisnikController {
@@ -14,6 +15,7 @@ public class KorisnikController {
     public ListView<Korisnik> listKorisnici;
     public PasswordField fldPassword;
     public PasswordField fldPasswordRepeat;
+    public Slider sliderGodinaRodjenja;
 
     private KorisniciModel model;
 
@@ -34,6 +36,7 @@ public class KorisnikController {
                 fldIme.textProperty().unbindBidirectional(oldKorisnik.imeProperty());
                 fldPrezime.textProperty().unbindBidirectional(oldKorisnik.prezimeProperty());
                 fldEmail.textProperty().unbindBidirectional(oldKorisnik.emailProperty());
+                sliderGodinaRodjenja.valueProperty().unbindBidirectional(oldKorisnik.godinaRodjenjaProperty());
                 fldUsername.textProperty().unbindBidirectional(oldKorisnik.usernameProperty());
                 fldPassword.textProperty().unbindBidirectional(oldKorisnik.passwordProperty());
             }
@@ -41,6 +44,7 @@ public class KorisnikController {
                 fldIme.setText("");
                 fldPrezime.setText("");
                 fldEmail.setText("");
+                sliderGodinaRodjenja.setValue(2000);
                 fldUsername.setText("");
                 fldPassword.setText("");
                 fldPasswordRepeat.setText("");
@@ -48,6 +52,7 @@ public class KorisnikController {
                 fldIme.textProperty().bindBidirectional(newKorisnik.imeProperty());
                 fldPrezime.textProperty().bindBidirectional(newKorisnik.prezimeProperty());
                 fldEmail.textProperty().bindBidirectional(newKorisnik.emailProperty());
+                sliderGodinaRodjenja.valueProperty().bindBidirectional(newKorisnik.godinaRodjenjaProperty());
                 fldUsername.textProperty().bindBidirectional(newKorisnik.usernameProperty());
                 fldPassword.textProperty().bindBidirectional(newKorisnik.passwordProperty());
                 fldPasswordRepeat.textProperty().setValue(fldPassword.getText());

@@ -1,14 +1,16 @@
 package ba.unsa.etf.rpr.zadaca2;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ListView;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.Slider;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
+import java.util.List;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class KorisnikController {
     public TextField fldIme;
@@ -19,6 +21,7 @@ public class KorisnikController {
     public PasswordField fldPassword;
     public PasswordField fldPasswordRepeat;
     public Slider sliderGodinaRodjenja;
+    public CheckBox cbAdmin;
 
     private KorisniciModel model;
 
@@ -103,7 +106,8 @@ public class KorisnikController {
         });
 
         fldPassword.textProperty().addListener((obs, oldIme, newIme) -> {
-            if(model.getTrenutniKorisnik() != null) model.getTrenutniKorisnik().setPassword(newIme);
+
+            if (model.getTrenutniKorisnik() != null) model.getTrenutniKorisnik().setPassword(newIme);
             if (!newIme.isEmpty() && newIme.equals(fldPasswordRepeat.getText()) && model.getTrenutniKorisnik().checkPassword()) {
                 fldPassword.getStyleClass().removeAll("poljeNijeIspravno");
                 fldPassword.getStyleClass().add("poljeIspravno");
@@ -119,7 +123,7 @@ public class KorisnikController {
 
         fldPasswordRepeat.textProperty().addListener((obs, oldIme, newIme) -> {
             boolean correctPassword = true;
-            if(model.getTrenutniKorisnik() != null) correctPassword = model.getTrenutniKorisnik().checkPassword();
+            if (model.getTrenutniKorisnik() != null) correctPassword = model.getTrenutniKorisnik().checkPassword();
             if (!newIme.isEmpty() && newIme.equals(fldPassword.getText()) && correctPassword) {
                 fldPasswordRepeat.getStyleClass().removeAll("poljeNijeIspravno");
                 fldPasswordRepeat.getStyleClass().add("poljeIspravno");
@@ -139,7 +143,7 @@ public class KorisnikController {
     }
 
     private boolean checkIme(String newIme) {
-        Pattern pattern = Pattern.compile("[a-z|A-Z|\\-| ]");
+        Pattern pattern = Pattern.compile("[a-z|A-Z|\\-| |č|ć|ž|đ|š]");
         Matcher matches = pattern.matcher(newIme);
         String ime = "";
         while (matches.find()) {
@@ -165,5 +169,93 @@ public class KorisnikController {
 
     public void obrisiAction(ActionEvent actionEvent) {
         model.getKorisnici().remove(model.getTrenutniKorisnik());
+    }
+
+    public void generisiAction(ActionEvent actionEvent) {
+        if (fldIme.getText().length() != 0) {
+            String username = fldIme.getText().charAt(0) + fldPrezime.getText();
+            username = username.toLowerCase();
+            username = username.replace('č', 'c');
+            username = username.replace('ć', 'c');
+            username = username.replace('ž', 'z');
+            username = username.replace('đ', 'd');
+            username = username.replace('š', 's');
+            fldUsername.setText(username);
+        }
+
+        String upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String lowerCase = "abcdefghijklmnopqrstuvwxyz";
+        String numbers = "0123456789";
+        String specialChars = "!#$%&/()=?,.-_";
+        String values = upperCase + lowerCase + numbers;
+
+        if (cbAdmin.isSelected()) values += specialChars;
+
+        Integer passwordLength = 8;
+
+        Random rnd = new Random();
+
+        char[] password = new char[passwordLength];
+        List<Integer> indeksi = IntStream.range(0, passwordLength).boxed().collect(Collectors.toList());
+
+        int pozicijaIndeksi = rnd.nextInt(passwordLength--);
+        Integer indeks = indeksi.get(pozicijaIndeksi);
+        password[indeks] = upperCase.charAt(rnd.nextInt(upperCase.length()));
+        indeksi.remove(pozicijaIndeksi);
+
+        pozicijaIndeksi = rnd.nextInt(passwordLength--);
+        indeks = indeksi.get(pozicijaIndeksi);
+        password[indeks] = lowerCase.charAt(rnd.nextInt(lowerCase.length()));
+        indeksi.remove(pozicijaIndeksi);
+
+        pozicijaIndeksi = rnd.nextInt(passwordLength--);
+        indeks = indeksi.get(pozicijaIndeksi);
+        password[indeks] = numbers.charAt(rnd.nextInt(numbers.length()));
+        indeksi.remove(pozicijaIndeksi);
+
+        if (cbAdmin.isSelected()) {
+            pozicijaIndeksi = rnd.nextInt(passwordLength--);
+            indeks = indeksi.get(pozicijaIndeksi);
+            password[indeks] = specialChars.charAt(rnd.nextInt(specialChars.length()));
+            indeksi.remove(pozicijaIndeksi);
+        }
+
+        int n = passwordLength;
+
+        for (int i = 0; i < n; i++) {
+            pozicijaIndeksi = rnd.nextInt(passwordLength--);
+            indeks = indeksi.get(pozicijaIndeksi);
+            password[indeks] = values.charAt(rnd.nextInt(values.length()));
+            indeksi.remove(pozicijaIndeksi);
+        }
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Password generated");
+        alert.setHeaderText(null);
+        alert.setContentText(String.format("Vaš password je: %s", String.valueOf(password)));
+
+        alert.showAndWait();
+
+        fldPassword.setText(String.valueOf(password));
+        fldPasswordRepeat.setText(String.valueOf(password));
+    }
+
+    public void adminAction(ActionEvent actionEvent) {
+        if (model.getTrenutniKorisnik() != null) {
+            if (cbAdmin.isSelected() && model.getTrenutniKorisnik().getClass() == Korisnik.class) {
+                Administrator admin = new Administrator(model.getTrenutniKorisnik());
+                ObservableList<Korisnik> korisniks = model.getKorisnici();
+                korisniks.set(korisniks.indexOf(model.getTrenutniKorisnik()), admin);
+                model.setKorisnici(korisniks);
+                model.setTrenutniKorisnik(admin);
+            } else if (model.getTrenutniKorisnik().getClass() == Administrator.class && !cbAdmin.isSelected()) {
+                Korisnik admin = new Administrator(model.getTrenutniKorisnik());
+                Korisnik korisnik = new Korisnik(admin.getIme(), admin.getPrezime(), admin.getEmail(), admin.getUsername(), admin.getPassword());
+                ObservableList<Korisnik> korisniks = model.getKorisnici();
+                korisniks.set(korisniks.indexOf(model.getTrenutniKorisnik()), korisnik);
+                model.setKorisnici(korisniks);
+                model.setTrenutniKorisnik(korisnik);
+            }
+        }
     }
 }

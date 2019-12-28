@@ -1,4 +1,4 @@
-/*package ba.unsa.etf.rpr.t7;
+package ba.unsa.etf.rpr.zadaca2;
 
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
@@ -57,12 +57,12 @@ public class Zadatak8Test {
 
         // Kada riješite zadatak 9, otkomentarišite kod ispod
 //        // Čekamo da dijalog postane vidljiv
-//        robot.lookup(".dialog-pane").tryQuery().isPresent();
+        robot.lookup(".dialog-pane").tryQuery().isPresent();
 //
 //        // Klik na dugme Ok
-//        DialogPane dialogPane = robot.lookup(".dialog-pane").queryAs(DialogPane.class);
-//        Button okButton = (Button) dialogPane.lookupButton(ButtonType.OK);
-//        robot.clickOn(okButton);
+        DialogPane dialogPane = robot.lookup(".dialog-pane").queryAs(DialogPane.class);
+        Button okButton = (Button) dialogPane.lookupButton(ButtonType.OK);
+        robot.clickOn(okButton);
 
         robot.clickOn("Fejzić Rijad");
         robot.clickOn("Sijerčić Tarik");
@@ -80,12 +80,12 @@ public class Zadatak8Test {
 
         // Kada riješite zadatak 9, otkomentarišite kod ispod
 //        // Čekamo da dijalog postane vidljiv
-//        robot.lookup(".dialog-pane").tryQuery().isPresent();
+        robot.lookup(".dialog-pane").tryQuery().isPresent();
 //
 //        // Klik na dugme Ok
-//        DialogPane dialogPane = robot.lookup(".dialog-pane").queryAs(DialogPane.class);
-//        Button okButton = (Button) dialogPane.lookupButton(ButtonType.OK);
-//        robot.clickOn(okButton);
+        DialogPane dialogPane = robot.lookup(".dialog-pane").queryAs(DialogPane.class);
+        Button okButton = (Button) dialogPane.lookupButton(ButtonType.OK);
+        robot.clickOn(okButton);
 
         robot.clickOn("Sijerčić Tarik");
 
@@ -113,12 +113,12 @@ public class Zadatak8Test {
 
         // Kada riješite zadatak 9, otkomentarišite kod ispod
 //        // Čekamo da dijalog postane vidljiv
-//        robot.lookup(".dialog-pane").tryQuery().isPresent();
+        robot.lookup(".dialog-pane").tryQuery().isPresent();
 //
 //        // Klik na dugme Ok
-//        DialogPane dialogPane = robot.lookup(".dialog-pane").queryAs(DialogPane.class);
-//        Button okButton = (Button) dialogPane.lookupButton(ButtonType.OK);
-//        robot.clickOn(okButton);
+        DialogPane dialogPane = robot.lookup(".dialog-pane").queryAs(DialogPane.class);
+        Button okButton = (Button) dialogPane.lookupButton(ButtonType.OK);
+        robot.clickOn(okButton);
 
         ObservableList<Korisnik> korisniks = model.getKorisnici();
         assertEquals("cccsdzccsdz", korisniks.get(4).getUsername());
@@ -143,12 +143,12 @@ public class Zadatak8Test {
 
         // Kada riješite zadatak 9, otkomentarišite kod ispod
 //        // Čekamo da dijalog postane vidljiv
-//        robot.lookup(".dialog-pane").tryQuery().isPresent();
+        robot.lookup(".dialog-pane").tryQuery().isPresent();
 //
 //        // Klik na dugme Ok
-//        DialogPane dialogPane = robot.lookup(".dialog-pane").queryAs(DialogPane.class);
-//        Button okButton = (Button) dialogPane.lookupButton(ButtonType.OK);
-//        robot.clickOn(okButton);
+        DialogPane dialogPane = robot.lookup(".dialog-pane").queryAs(DialogPane.class);
+        Button okButton = (Button) dialogPane.lookupButton(ButtonType.OK);
+        robot.clickOn(okButton);
 
         ObservableList<Korisnik> korisniks = model.getKorisnici();
         assertEquals("zzdscc", korisniks.get(4).getUsername());
@@ -165,15 +165,14 @@ public class Zadatak8Test {
 
         // Kada riješite zadatak 9, otkomentarišite kod ispod
 //        // Čekamo da dijalog postane vidljiv
-//        robot.lookup(".dialog-pane").tryQuery().isPresent();
+        robot.lookup(".dialog-pane").tryQuery().isPresent();
 //
 //        // Klik na dugme Ok
-//        DialogPane dialogPane = robot.lookup(".dialog-pane").queryAs(DialogPane.class);
-//        Button okButton = (Button) dialogPane.lookupButton(ButtonType.OK);
-//        robot.clickOn(okButton);
+        DialogPane dialogPane = robot.lookup(".dialog-pane").queryAs(DialogPane.class);
+        Button okButton = (Button) dialogPane.lookupButton(ButtonType.OK);
+        robot.clickOn(okButton);
 
         ObservableList<Korisnik> korisniks = model.getKorisnici();
         assertEquals("", korisniks.get(4).getUsername());
     }
 }
-*/

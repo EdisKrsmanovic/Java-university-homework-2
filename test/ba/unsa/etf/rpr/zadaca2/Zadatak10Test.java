@@ -1,4 +1,4 @@
-/*package ba.unsa.etf.rpr.t7;
+package ba.unsa.etf.rpr.zadaca2;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 import static org.junit.jupiter.api.Assertions.*;
@@ -155,9 +155,9 @@ class Zadatak10Test {
         robot.press(KeyCode.CONTROL).press(KeyCode.A).release(KeyCode.A).release(KeyCode.CONTROL);
         robot.write("ab");
         // Ako ste uradili zadatak 4, otkomentarišite kod ispod
-//        robot.clickOn("#fldPasswordRepeat");
-//        robot.press(KeyCode.CONTROL).press(KeyCode.A).release(KeyCode.A).release(KeyCode.CONTROL);
-//        robot.write("ab");
+        robot.clickOn("#fldPasswordRepeat");
+        robot.press(KeyCode.CONTROL).press(KeyCode.A).release(KeyCode.A).release(KeyCode.CONTROL);
+        robot.write("ab");
 
         TextField ime = robot.lookup("#fldPassword").queryAs(TextField.class);
         assertTrue(KorisnikControllerTest.sadrziStil(ime, "poljeNijeIspravno"));
@@ -165,28 +165,28 @@ class Zadatak10Test {
         robot.clickOn("#fldPassword");
         robot.write("C");
         // Ako ste uradili zadatak 4, otkomentarišite kod ispod
-//        robot.clickOn("#fldPasswordRepeat");
-//        robot.write("C");
+        robot.clickOn("#fldPasswordRepeat");
+        robot.write("C");
         assertTrue(KorisnikControllerTest.sadrziStil(ime, "poljeNijeIspravno"));
 
         robot.clickOn("#fldPassword");
         robot.write("1");
         // Ako ste uradili zadatak 4, otkomentarišite kod ispod
-//        robot.clickOn("#fldPasswordRepeat");
-//        robot.write("1");
+        robot.clickOn("#fldPasswordRepeat");
+        robot.write("1");
         assertTrue(KorisnikControllerTest.sadrziStil(ime, "poljeNijeIspravno"));
 
         robot.clickOn("#fldPassword");
         robot.write("@");
         // Ako ste uradili zadatak 4, otkomentarišite kod ispod
-//        robot.clickOn("#fldPasswordRepeat");
-//        robot.write("@");
+        robot.clickOn("#fldPasswordRepeat");
+        robot.write("@");
         assertTrue(KorisnikControllerTest.sadrziStil(ime, "poljeIspravno"));
 
         // Ako ste uradili zadatak 4, otkomentarišite kod ispod
-//        robot.clickOn("#fldPasswordRepeat");
-//        robot.press(KeyCode.RIGHT).release(KeyCode.RIGHT);
-//        robot.press(KeyCode.BACK_SPACE).release(KeyCode.BACK_SPACE);
+        robot.clickOn("#fldPasswordRepeat");
+        robot.press(KeyCode.RIGHT).release(KeyCode.RIGHT);
+        robot.press(KeyCode.BACK_SPACE).release(KeyCode.BACK_SPACE);
         robot.clickOn("#fldPassword");
         robot.press(KeyCode.RIGHT).release(KeyCode.RIGHT);
         robot.press(KeyCode.BACK_SPACE).release(KeyCode.BACK_SPACE);
@@ -194,8 +194,8 @@ class Zadatak10Test {
 
 
         // Ako ste uradili zadatak 4, otkomentarišite kod ispod
-//        robot.clickOn("#fldPasswordRepeat");
-//        robot.write("@");
+        robot.clickOn("#fldPasswordRepeat");
+        robot.write("@");
         robot.clickOn("#fldPassword");
         robot.write("@");
         assertTrue(KorisnikControllerTest.sadrziStil(ime, "poljeIspravno"));
@@ -270,4 +270,4 @@ class Zadatak10Test {
 
         assertNull(model.getTrenutniKorisnik());
     }
-}*/
+}

@@ -3,6 +3,9 @@ package ba.unsa.etf.rpr.zadaca2;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Korisnik {
     private SimpleStringProperty ime, prezime, email, username, password;
     private SimpleIntegerProperty godinaRodjenja;
@@ -93,5 +96,23 @@ public class Korisnik {
         this.godinaRodjenja.set(godinaRodjenja);
     }
 
+    public boolean checkPassword() {
+        String regexUppercase = "[A-Z]";
+        Pattern pattern = Pattern.compile(regexUppercase);
+        Matcher matches = pattern.matcher(getPassword());
+        if(!matches.find()) return false;
+
+        regexUppercase = "[a-z]";
+        pattern = Pattern.compile(regexUppercase);
+        matches = pattern.matcher(getPassword());
+        if(!matches.find()) return false;
+
+        regexUppercase = "[0-9]";
+        pattern = Pattern.compile(regexUppercase);
+        matches = pattern.matcher(getPassword());
+        if(!matches.find()) return false;
+
+        return true;
+    }
 
 }

@@ -1,4 +1,4 @@
-/*package ba.unsa.etf.rpr.t7;
+package ba.unsa.etf.rpr.zadaca2;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -197,4 +197,3 @@ public class Zadatak6Test {
         assertTrue(KorisnikControllerTest.sadrziStil(ime, "poljeNijeIspravno"));
     }
 }
-*/

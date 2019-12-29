@@ -1,10 +1,14 @@
 package ba.unsa.etf.rpr.zadaca2;
 
+import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
+import java.text.Format;
 import java.util.List;
 import java.util.Random;
 import java.util.regex.Matcher;
@@ -22,6 +26,7 @@ public class KorisnikController {
     public PasswordField fldPasswordRepeat;
     public Slider sliderGodinaRodjenja;
     public CheckBox cbAdmin;
+    public Label godinaLabel;
 
     private KorisniciModel model;
 
@@ -36,6 +41,13 @@ public class KorisnikController {
             model.setTrenutniKorisnik(newKorisnik);
             listKorisnici.refresh();
         });
+
+        sliderGodinaRodjenja.setBlockIncrement(1);
+        sliderGodinaRodjenja.setMajorTickUnit(1);
+        sliderGodinaRodjenja.setMinorTickCount(0);
+        sliderGodinaRodjenja.setShowTickLabels(false);
+        sliderGodinaRodjenja.setShowTickMarks(false);
+        sliderGodinaRodjenja.setSnapToTicks(true);
 
         model.trenutniKorisnikProperty().addListener((obs, oldKorisnik, newKorisnik) -> {
             if (oldKorisnik != null) {
@@ -134,6 +146,14 @@ public class KorisnikController {
                 fldPasswordRepeat.getStyleClass().add("poljeNijeIspravno");
                 fldPassword.getStyleClass().removeAll("poljeIspravno");
                 fldPassword.getStyleClass().add("poljeNijeIspravno");
+            }
+        });
+
+
+
+        sliderGodinaRodjenja.valueProperty().addListener((observableValue, oldVal, newVal) -> {
+            if(newVal != null) {
+                Platform.runLater(() -> godinaLabel.textProperty().setValue(String.valueOf(newVal.intValue())));
             }
         });
     }
